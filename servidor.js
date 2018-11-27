@@ -2,9 +2,11 @@ const WebSocket = require("ws");
 
 const wss = new WebSocket.Server({port: 8080});
 
-wss.on("connection", function connection(ws) {
+wss.on("connection", function(ws) {
     ws.on("message", function(message) {
-        console.log("Recibido : " + message);
+        var elem = JSON.parse(message);
+        console.log(elem["tipo"]);
+        ws.send("Hola");
     });
-    console.log("HALELUYA")
+    console.log("Connected")
 });
