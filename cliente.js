@@ -4,7 +4,8 @@ var anfitrion = true;
 cliente.onmessage = function (mensaje) {
     if (!anfitrion) {
         var datos = JSON.parse(mensaje.data);
-        console.log("Mensaje recibido: " + datos[pX] + " - " + datos[pY]);
+        colorearCliente(datos["pX"], datos["pY"]);
+        console.log("Mensaje recibido: " + datos["pX"] + " - " + datos["pY"]);
     }
 }
 
@@ -27,6 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+colorearCliente(posX, posY) {
+    lienzo.moveTo(posX, posY);
+    lienzo.beginPath();
+    lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
+    lienzo.fill();
+    lienzo.stroke();
+}
 
 function pintar(e, mod) {
     if (mod == 1) {
