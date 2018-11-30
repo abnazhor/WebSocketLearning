@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-colorearCliente(posX, posY) {
+function colorearCliente(posX, posY) {
     lienzo.moveTo(posX, posY);
     lienzo.beginPath();
     lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
