@@ -44,11 +44,13 @@ function colorear(e) {
     if (pintando) {
         console.log("Pintando - " + posX + " - " + posY);
         if (anfitrion) {
+            var poX = posX + "";
+            var poY = posY + "";
             var datos = {
-                pX: posX,
-                pY: posY
+                pX: poX,
+                pY: poY
             }
-            JSON.stringify(datos);
+            datos = JSON.stringify(datos);
             cliente.send(datos);
             lienzo.beginPath();
             lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
