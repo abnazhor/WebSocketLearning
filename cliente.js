@@ -1,9 +1,11 @@
-var cliente = new WebSocket("ws://127.0.0.1:8080");
+var cliente = new WebSocket("ws://127.0.0.1:3000");
 var anfitrion = true;
 
 cliente.onmessage = function (mensaje) {
-    var datos = JSON.parse(mensaje.data);
-    console.log("Mensaje recibido: ");
+    if (!anfitrion) {
+        var datos = JSON.parse(mensaje.data);
+        console.log("Mensaje recibido: " + datos[pX] + " - " + datos[pY]);
+    }
 }
 
 var pintando = false;
