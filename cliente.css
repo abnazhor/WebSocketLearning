@@ -1,0 +1,35 @@
+#lienzo{
+    border:1px solid black;
+    background-color: rgb(188, 221, 252);
+    margin:auto;
+    display: block;
+}
+#contenedor{
+    width: 100%;
+    align-content: center;
+}
+h1,h4{
+    text-align: center;
+}
+#colores{
+    align-content: center;
+    width: 11%;
+    margin:auto;
+    padding-top: 10px;
+}
+.color{
+    width: 30px;
+    height: 30px;
+    border-radius: 85454854854px;
+    background-color: black;
+    display: inline-block;
+}
+#rojo{
+    background-color: red;
+}
+#azul{
+    background-color: blue;
+}
+#verde{
+    background-color: green;
+}
