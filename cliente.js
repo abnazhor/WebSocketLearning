@@ -1,9 +1,11 @@
-var cliente = new WebSocket("ws://127.0.0.1:8080");
+var cliente = new WebSocket("ws://127.0.0.1:3000");
 var anfitrion = true;
 
 cliente.onmessage = function (mensaje) {
-    var datos = JSON.parse(mensaje.data);
-    console.log("Mensaje recibido: ");
+    if (!anfitrion) {
+        var datos = JSON.parse(mensaje.data);
+        console.log("Mensaje recibido: " + datos[pX] + " - " + datos[pY]);
+    }
 }
 
 var pintando = false;
@@ -42,11 +44,13 @@ function colorear(e) {
     if (pintando) {
         console.log("Pintando - " + posX + " - " + posY);
         if (anfitrion) {
+            var poX = posX + "";
+            var poY = posY + "";
             var datos = {
-                pX: posX,
-                pY: posY
+                pX: poX,
+                pY: poY
             }
-            JSON.stringify(datos);
+            datos = JSON.stringify(datos);
             cliente.send(datos);
             lienzo.beginPath();
             lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
