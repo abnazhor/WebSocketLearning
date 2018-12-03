@@ -2,14 +2,15 @@ var cliente = new WebSocket("ws://127.0.0.1:3000");
 var anfitrion = true;
 
 cliente.onmessage = function (mensaje) {
-    if (!anfitrion) {
+    if (anfitrion) {
         var datos = JSON.parse(mensaje.data);
-        colorearCliente(datos["pX"], datos["pY"]);
+        colorearCliente(datos["pX"], datos["pY"], datos["color"]);
         console.log("Mensaje recibido: " + datos["pX"] + " - " + datos["pY"]);
     }
 }
 
 var pintando = false;
+var color = "black";
 
 document.addEventListener("DOMContentLoaded", function () {
     var elemento = document.getElementById("lienzo");
@@ -29,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function colorearCliente(posX, posY) {
+function colorearCliente(posX, posY, colorotro) {
+    lienzo.strokeStyle = colorotro;
     lienzo.moveTo(posX, posY);
     lienzo.beginPath();
     lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
@@ -58,10 +60,12 @@ function colorear(e) {
             var poY = posY;
             var datos = {
                 pX: poX,
-                pY: poY
+                pY: poY,
+                color: color
             }
             datos = JSON.stringify(datos);
             cliente.send(datos);
+            lienzo.strokeStyle = color;
             lienzo.beginPath();
             lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
             lienzo.fill();
