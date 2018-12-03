@@ -4,7 +4,8 @@ var anfitrion = true;
 cliente.onmessage = function (mensaje) {
     if (!anfitrion) {
         var datos = JSON.parse(mensaje.data);
-        console.log("Mensaje recibido: " + datos[pX] + " - " + datos[pY]);
+        colorearCliente(datos["pX"], datos["pY"]);
+        console.log("Mensaje recibido: " + datos["pX"] + " - " + datos["pY"]);
     }
 }
 
@@ -28,6 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+function colorearCliente(posX, posY) {
+    lienzo.moveTo(posX, posY);
+    lienzo.beginPath();
+    lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
+    lienzo.fill();
+    lienzo.stroke();
+}
+
 function pintar(e, mod) {
     if (mod == 1) {
         pintando = true;
@@ -37,15 +46,16 @@ function pintar(e, mod) {
 }
 
 function colorear(e) {
-    var posX = e.clientX;
-    var posY = e.clientY;
+    let rectangulo = document.getElementById("lienzo").getBoundingClientRect();
+    posX = e.clientX - rectangulo.left;
+    posY = e.clientY - rectangulo.top;
 
     lienzo.moveTo(posX, posY);
     if (pintando) {
         console.log("Pintando - " + posX + " - " + posY);
         if (anfitrion) {
-            var poX = posX + "";
-            var poY = posY + "";
+            var poX = posX;
+            var poY = posY;
             var datos = {
                 pX: poX,
                 pY: poY
