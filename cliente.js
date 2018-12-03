@@ -10,7 +10,7 @@ cliente.onmessage = function (mensaje) {
 }
 
 var pintando = false;
-var color = "blue";
+var color = "black";
 
 document.addEventListener("DOMContentLoaded", function () {
     var elemento = document.getElementById("lienzo");
