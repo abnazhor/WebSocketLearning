@@ -46,15 +46,16 @@ function pintar(e, mod) {
 }
 
 function colorear(e) {
-    var posX = e.clientX;
-    var posY = e.clientY;
+    let rectangulo = document.getElementById("lienzo").getBoundingClientRect();
+    posX = e.clientX - rectangulo.left;
+    posY = e.clientY - rectangulo.top;
 
     lienzo.moveTo(posX, posY);
     if (pintando) {
         console.log("Pintando - " + posX + " - " + posY);
         if (anfitrion) {
-            var poX = posX + "";
-            var poY = posY + "";
+            var poX = posX;
+            var poY = posY;
             var datos = {
                 pX: poX,
                 pY: poY
