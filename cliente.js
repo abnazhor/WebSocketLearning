@@ -10,7 +10,7 @@ cliente.onmessage = function (mensaje) {
 }
 
 var pintando = false;
-var color = "black";
+var color = "blue";
 
 document.addEventListener("DOMContentLoaded", function () {
     var elemento = document.getElementById("lienzo");
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function colorearCliente(posX, posY, colorotro) {
     lienzo.strokeStyle = colorotro;
+    lienzo.fillStyle = colorotro;
     lienzo.moveTo(posX, posY);
     lienzo.beginPath();
     lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
@@ -66,6 +67,7 @@ function colorear(e) {
             datos = JSON.stringify(datos);
             cliente.send(datos);
             lienzo.strokeStyle = color;
+            lienzo.fillStyle = color;
             lienzo.beginPath();
             lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);
             lienzo.fill();
