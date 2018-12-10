@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
             colorear(evento);
         });
     }
+
+    if (anfitrion) {
+        crearColores();
+    }
 });
 
 function colorearCliente(posX, posY, colorotro) {
@@ -74,4 +78,20 @@ function colorear(e) {
             lienzo.stroke();
         }
     }
+}
+
+function crearColores() {
+    let paleta = document.getElementById("colores").getElementsByTagName("div");
+    for(let i = 0; i < paleta.length; i++) {
+        paleta[i].addEventListener("click", function(ev) {
+            cambiarColor(ev);
+        });
+    }
+}
+
+function cambiarColor(elem) {
+    var elemento = elem.target;
+    lienzo.strokeStyle = elemento.id;
+    lienzo.fillStyle = elemento.id;
+    console.log("Ha cambiado de color al " + elemento.id);
 }
