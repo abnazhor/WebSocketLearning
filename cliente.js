@@ -91,7 +91,7 @@ function crearColores() {
 
 function cambiarColor(elem) {
     var elemento = elem.target;
-    lienzo.strokeStyle = elemento.id;
-    lienzo.fillStyle = elemento.id;
+    color = elemento.id;
+    console.log(lienzo.fillStyle);
     console.log("Ha cambiado de color al " + elemento.id);
 }
