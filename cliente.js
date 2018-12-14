@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function colorearCliente(posX, posY, colorotro) {
     lienzo.strokeStyle = colorotro;
     lienzo.fillStyle = colorotro;
+    lienzo.fill();
+    lienzo.stroke();
     lienzo.moveTo(posX, posY);
     lienzo.beginPath();
     lienzo.arc(posX - 10, posY - 10, 5, 0, Math.PI * 2);

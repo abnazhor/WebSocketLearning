@@ -13,7 +13,7 @@ h1,h4{
 }
 #colores{
     align-content: center;
-    width: 11%;
+    width: 16%;
     margin:auto;
     padding-top: 10px;
 }
@@ -32,4 +32,12 @@ h1,h4{
 }
 #green{
     background-color: green;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#orange {
+    background-color: orange;
 }
