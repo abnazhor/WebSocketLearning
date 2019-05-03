@@ -54,7 +54,7 @@ function pintar(e, mod) {
     }
 }
 
-function colorear(e) {
+function colorear(e) { // Función para el coloreado dentro del lienzo.
     let rectangulo = document.getElementById("lienzo").getBoundingClientRect();
     posX = e.clientX - rectangulo.left;
     posY = e.clientY - rectangulo.top;
