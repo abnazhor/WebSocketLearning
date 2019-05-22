@@ -1,19 +1,19 @@
-var cliente = new WebSocket("ws://127.0.0.1:3000");
-var jugador = true;
+const cliente = new WebSocket("ws://127.0.0.1:3000");
+let jugador = true;
 
 cliente.onmessage = function (mensaje) {
     if (jugador) {
-        var datos = JSON.parse(mensaje.data);
+        let datos = JSON.parse(mensaje.data);
         colorearCliente(datos["pX"], datos["pY"], datos["color"]);
         console.log("Mensaje recibido: " + datos["pX"] + " - " + datos["pY"]);
     }
-}
+};
 
-var pintando = false;
-var color = "black";
+let pintando = false;
+let color = "black";
 
 document.addEventListener("DOMContentLoaded", function () {
-    var elemento = document.getElementById("lienzo");
+    let elemento = document.getElementById("lienzo");
     lienzo = elemento.getContext("2d");
     elemento.addEventListener("mousedown", function (evento) {
         pintar(evento, 1);
@@ -47,30 +47,23 @@ function colorearCliente(posX, posY, colorotro) {
 }
 
 function pintar(e, mod) {
-    if (mod == 1) {
-        pintando = true;
-    } else {
-        pintando = false;
-    }
+    pintando=mod===1;
 }
 
 function colorear(e) { // Función para el coloreado dentro del lienzo.
     let rectangulo = document.getElementById("lienzo").getBoundingClientRect();
-    posX = e.clientX - rectangulo.left;
-    posY = e.clientY - rectangulo.top;
+    let posX = e.clientX - rectangulo.left;
+    let posY = e.clientY - rectangulo.top;
 
     lienzo.moveTo(posX, posY);
     if (pintando) {
         console.log("Pintando - " + posX + " - " + posY);
         if (jugador) {
-            var posAnterior = [posX, posY];
-            var poX = posX;
-            var poY = posY;
-            var datos = {
-                pX: poX,
-                pY: poY,
+            let datos = {
+                pX: posX,
+                pY: posY,
                 color: color
-            }
+            };
             datos = JSON.stringify(datos);
             cliente.send(datos);
             for (let i = 0; i < 20; i++) {
@@ -95,7 +88,7 @@ function crearColores() {
 }
 
 function cambiarColor(elem) {
-    var elemento = elem.target;
+    let elemento = elem.target;
     color = elemento.id;
     console.log(lienzo.fillStyle);
     console.log("Ha cambiado de color al " + elemento.id);
